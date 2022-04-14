@@ -1,0 +1,21 @@
+@import "../global.scss";
+
+.layout {
+    nav {
+        box-shadow: 2px 0 10px rgb(108, 108, 108);
+        margin-bottom: 20px;
+        border-radius: 0 0 20px 20px;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+
+    .content {
+        background-color: $mycolor;
+    }
+}
