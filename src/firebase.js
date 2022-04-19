@@ -94,9 +94,10 @@ const sendPasswordReset = async (email) => {
     }
 };
 
-const logout = () => {
-    signOut(auth);
+async function logout() {
+    await signOut(auth)
 };
+
 export {
     auth,
     db,

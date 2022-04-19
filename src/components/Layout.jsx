@@ -5,14 +5,16 @@ import styles from "./Layout.module.scss";
 import InfoIcon from "@mui/icons-material/Info";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import HistoryIcon from "@mui/icons-material/History";
+import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from "../firebase";
 
 function Layout({ children }) {
   let navigate = useNavigate(); 
-    const logout_redirect = () =>{ 
+  const logout_redirect = () =>{ 
     let path = `/`; 
-    logout();
-    navigate(path);
+    logout().then(() => {
+      navigate(path)
+    })
   }
 
   return (
@@ -35,6 +37,11 @@ function Layout({ children }) {
               <HistoryIcon />
             </NavLink>
           </li>
+          {/* <li>
+            <NavLink to="/history" onClick={logout_redirect}>
+              <LogoutIcon />
+            </NavLink>
+          </li> */}
           <button className="dashboard__btn" onClick={logout_redirect}>Logout</button>
         </ul>
       </nav>
