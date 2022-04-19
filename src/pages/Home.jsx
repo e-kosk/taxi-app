@@ -71,7 +71,7 @@ function Home() {
 
     const newAddress = {
       ...addressFrom,
-      address: getAddressFromLatLon(addressFrom.address),
+      address: getAddressFromLatLon(pos.coords.latitude, pos.coords.longitude),
     };
 
     setAddressFrom(newAddress);
@@ -130,6 +130,7 @@ function Home() {
                   onChange={handleInputFrom}
                   onBlur={handleBlurFrom}
                   placeholder="From ..."
+                  id='address_from'
                   className={styles.addressInput}
                 />
                 <p className={styles.hint}>

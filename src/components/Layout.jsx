@@ -9,10 +9,11 @@ import { logout } from "../firebase";
 
 function Layout({ children }) {
   let navigate = useNavigate(); 
-    const logout_redirect = () =>{ 
+  const logout_redirect = () =>{ 
     let path = `/`; 
-    logout();
-    navigate(path);
+    logout().then(() =>{ 
+    navigate(path)
+    });    
   }
 
   return (
