@@ -1,0 +1,80 @@
+@import "../global.scss";
+
+.rateModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.233);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: calc(100% - 30px);
+  box-sizing: border-box;
+
+  .closeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    min-width: unset;
+    background-color: $lightGrey;
+    border-radius: 50%;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      font-size: 20px;
+      color: black;
+      margin: 0;
+    }
+  }
+
+  .driver {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+
+    p {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+
+    img {
+      border-radius: 50%;
+      margin-right: 10px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .rate {
+    margin: 20px 0;
+  }
+
+  textarea {
+    resize: none;
+    border: none;
+    background-color: $lightGrey;
+    width: 90%;
+    font-family: inherit;
+    padding: 10px;
+    border-radius: 10px;
+    height: 100px;
+    font-size: 16px;
+  }
+
+  button {
+    margin-top: 10px;
+
+    svg {
+      font-size: 14px;
+      margin-left: 10px;
+    }
+  }
+}

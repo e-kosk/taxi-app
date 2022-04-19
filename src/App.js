@@ -1,10 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 import * as React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import Home from './pages/Home'
-import About from './pages/About'
-import Trip from './pages/Trip'
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import History from "./pages/History";
 
 function App() {
   return (
@@ -12,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
-        <Route path="trip" element={<Trip />} />
+        <Route path="history" element={<History />} />
       </Routes>
     </div>
   );

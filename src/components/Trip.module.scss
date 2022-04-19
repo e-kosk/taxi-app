@@ -1,0 +1,155 @@
+@import "../global.scss";
+
+.trip {
+  width: 100vw;
+  height: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+
+  .acceptTrip {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      margin-top: 10px;
+    }
+
+    .tripInfo {
+      display: flex;
+      margin-top: 10px;
+
+      p {
+        &:first-child {
+          margin-right: 10px;
+          padding-right: 10px;
+          border-right: 2px solid black;
+        }
+      }
+    }
+
+    .driver {
+      display: flex;
+      align-items: center;
+
+      img {
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .driverArrived {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .car {
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 10px;
+        font-size: 40px;
+        color: $primaryColor;
+        background-color: rgb(255, 255, 255);
+        padding: 15px;
+        border-radius: 50%;
+      }
+    }
+
+    button {
+      align-self: flex-end;
+    }
+  }
+
+  .tripStarted {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    button {
+      align-self: flex-end;
+      margin-top: 10px;
+    }
+  }
+
+  .tripSummary {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    button {
+      align-self: flex-end;
+      margin-top: 8px;
+    }
+
+    p {
+      display: flex;
+      align-items: center;
+      & > svg {
+        margin-right: 10px;
+      }
+    }
+
+    .arrowIcon {
+      font-size: 16px;
+      margin: 0 10px;
+    }
+  }
+
+  .cancelButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: fit-content;
+    background-color: white;
+    min-width: unset;
+    border-radius: 40px;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      color: black;
+    }
+  }
+
+  .map {
+    height: 60vh;
+    background-color: grey;
+  }
+
+  .info {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .driverInfo {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      margin: 10px auto;
+
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+
+    .cost {
+      font-size: 24px;
+      margin: auto 0 0 auto;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+}
