@@ -1,14 +1,28 @@
 import * as React from "react";
-import {useState, useEffect} from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import styles from "./WaitingForDriver.module.scss";
+import styles from "./Trip.module.scss";
 
-function WaitingForDriver({time}) {
-    return (
-        <div>
-            <h3>Your driver will be at meet point in {time}</h3>
-        </div>
-    );
-  }
+function WaitingForDriver({ timeLeft, name, jobTitle, cost }) {
+  return (
+    <>
+      <p>
+        Driver will be here in{" "}
+        <strong>
+          {timeLeft} minute{timeLeft > 1 ? "s" : ""}
+        </strong>
+        . Get ready.
+      </p>
+      <div className={styles.driverInfo}>
+        <img alt="driver" src="https://placebeard.it/150x150" />
+        <span>
+          <p>
+            <strong>{name}</strong>
+          </p>
+          <p>{jobTitle}</p>
+        </span>
+      </div>
+      <p className={styles.cost}>${cost}</p>
+    </>
+  );
+}
 
-export default WaitingForDriver
+export default WaitingForDriver;
