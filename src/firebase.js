@@ -18,7 +18,7 @@ import {
     where,
     addDoc,
 } from "firebase/firestore";
-            
+import { getMessaging, getToken, onMessage  } from "firebase/messaging";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -97,6 +97,31 @@ const sendPasswordReset = async (email) => {
 const logout = () => {
     signOut(auth);
 };
+
+const messaging = getMessaging();
+export const requestForToken = () => {
+  return getToken(messaging, { vapidKey: 'BI-RaIFQdEd2iiRPm3JZ6R4XM9-HL0vdw2BPop0gucsAn12eztjW5dXdl0nx3qH41uoDmWQwGN5gnV-FNua-kp0' })
+    .then((currentToken) => {
+      if (currentToken) {
+        console.log('current token for client: ', currentToken);
+        // Perform any other neccessary action with the token
+      } else {
+        // Show permission request UI
+        console.log('No registration token available. Request permission to generate one.');
+      }
+    })
+    .catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+    });
+};
+
+export const onMessageListener = () =>
+  new Promise((resolve) => {
+    onMessage(messaging, (payload) => {
+      console.log("payload", payload)
+      resolve(payload);
+    });
+  });
 export {
     auth,
     db,

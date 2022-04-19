@@ -9,6 +9,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Reset from './pages/Reset'
 import Dashboard from './pages/Dashboard'
+import Notification from './components/Notification'
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="trip" element={<Trip />} />
       </Routes>
+      <Notification/>
+      
     </div>
   );
 }
