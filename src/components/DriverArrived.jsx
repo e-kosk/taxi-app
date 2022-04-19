@@ -1,15 +1,27 @@
+import { Button } from "@mui/material";
 import * as React from "react";
-import {useState, useEffect} from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import styles from "./DriverArrived.module.scss";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import styles from "./Trip.module.scss";
+import CarCrashIcon from "@mui/icons-material/CarCrash";
 
-function DriverArrived({address, startTrip}) {
-    return (
+const DriverArrived = ({ address, startTrip, name, car }) => {
+  return (
+    <div className={styles.driverArrived}>
+      <h3>
+        {name} is waiting for you at {address}.
+      </h3>
+      <div className={styles.car}>
+        <CarCrashIcon />
         <div>
-            <h3>Your driver is waiting for you at {address}</h3>
-            <button onClick={startTrip}>Start</button>
+          <p>{car.make}</p>
+          <p>{car.id}</p>
         </div>
-    );
-  }
+      </div>
+      <Button onClick={startTrip}>
+        Start <ArrowForwardIcon />
+      </Button>
+    </div>
+  );
+};
 
-export default DriverArrived
+export default DriverArrived;

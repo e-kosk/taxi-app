@@ -1,16 +1,38 @@
 import * as React from "react";
-import {useState, useEffect} from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import styles from "./TripSummary.module.scss";
+import styles from "./Trip.module.scss";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import RoundaboutRightIcon from "@mui/icons-material/RoundaboutRight";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import { Button } from "@mui/material";
+import { convertToTime } from "../helper";
 
-function TripSummary({time, cost}) {
-    return (
-        <div>
-            <h3>Your trip is finished</h3>
-            <h4>Time: <strong>{time}</strong></h4>
-            <h4>Total cost: <strong>{cost}</strong></h4>
-        </div>
-    );
-  }
+function TripSummary({
+  time,
+  cost,
+  addressFrom,
+  addressTo,
+  cancelTrip,
+  openRatingModal,
+}) {
+  return (
+    <div className={styles.tripSummary}>
+      <h3>Your trip is finished.</h3>
+      <p className={styles.fromTo}>
+        <RoundaboutRightIcon />
+        {addressFrom} <ArrowForwardIcon className={styles.arrowIcon} />{" "}
+        {addressTo}
+      </p>
+      <p>
+        <AccessTimeIcon /> {convertToTime(time)}
+      </p>
+      <p>
+        <AttachMoneyIcon /> ${cost}
+      </p>
+      <Button onClick={openRatingModal}>rate this driver</Button>
+      <Button onClick={cancelTrip}>need another ride?</Button>
+    </div>
+  );
+}
 
-export default TripSummary
+export default TripSummary;
