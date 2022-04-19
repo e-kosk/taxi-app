@@ -1,6 +1,11 @@
 import "./App.css";
 import * as React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Router, Routes, Route, Link } from "react-router-dom";
+import Trip from './pages/Trip'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Reset from './pages/Reset'
+import Dashboard from './pages/Dashboard'
 import Home from "./pages/Home";
 import About from "./pages/About";
 import History from "./pages/History";
@@ -9,7 +14,11 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route exact path="/" element={<Login />} />
+        <Route exact path="/register" element={<Register />} />
+        <Route exact path="/reset" element={<Reset />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route path="home" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="history" element={<History />} />
       </Routes>
