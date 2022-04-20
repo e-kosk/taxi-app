@@ -156,6 +156,7 @@ function Home() {
                   onChange={handleInputFrom}
                   onBlur={handleBlurFrom}
                   placeholder="From ..."
+                  id='address_from'
                   className={styles.addressInput}
                 />
                 <p className={styles.hint}>
