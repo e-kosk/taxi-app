@@ -8,8 +8,13 @@ main {
   .map {
     width: 100vw;
     height: 60vh;
-    background-color: grey;
+    // background-color: grey;
     flex: 1;
+
+    // :first-child {
+    > div {
+      height: 100%;
+    }
   }
 
   .inputs {

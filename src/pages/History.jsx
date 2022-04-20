@@ -52,7 +52,7 @@ const History = () => {
   useEffect(() => {
     //api call for history items
     setTimeout(() => {
-      setItems(mockItems);
+      setItems([...mockItems, ...mockItems, ...mockItems, ...mockItems, ...mockItems, ...mockItems]);
       setIsLoading(false);
     }, 1000);
   }, []);

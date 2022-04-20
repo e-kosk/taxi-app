@@ -28,7 +28,7 @@ function Layout({ children }) {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">
+            <NavLink to="/home">
               <DirectionsCarIcon />
             </NavLink>
           </li>
@@ -37,12 +37,11 @@ function Layout({ children }) {
               <HistoryIcon />
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink to="/history" onClick={logout_redirect}>
+          <li>
+            <NavLink to="/logout" onClick={logout_redirect}>
               <LogoutIcon />
             </NavLink>
-          </li> */}
-          <button className="dashboard__btn" onClick={logout_redirect}>Logout</button>
+          </li>
         </ul>
       </nav>
     </div>

@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Reset from './pages/Reset'
 import Dashboard from './pages/Dashboard'
+import Notification from './components/Notification'
 import Home from "./pages/Home";
 import About from "./pages/About";
 import History from "./pages/History";
@@ -22,6 +23,8 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="history" element={<History />} />
       </Routes>
+      <Notification/>
+      
     </div>
   );
 }

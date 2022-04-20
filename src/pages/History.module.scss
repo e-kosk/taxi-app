@@ -15,8 +15,8 @@
 
   .items {
     justify-content: flex-start;
-    height: calc(100% - 120px);
-    overflow: scroll;
+    height: calc(100% - 132px);
+    overflow-y: auto;
 
     .carIcon {
       font-size: 30px;

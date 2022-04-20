@@ -8,6 +8,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import styles from "./Home.module.scss";
 import Trip from "../components/Trip";
 import Rate from "../components/Rate";
+import { MapContainer, Marker, Popup, TileLayer, useMapEvent } from "react-leaflet";
+import { MapHooks } from "../components/MapHooks"
 
 const name = "James";
 const jobTitle = "Taxi Driver";
@@ -43,7 +45,6 @@ function Home() {
   }
 
   function order() {
-    console.log(addressFrom, addressTo);
     setIsSearching(true);
   }
 
@@ -53,13 +54,13 @@ function Home() {
   }
 
   function handleBlurFrom(e) {
-    const latLon = getLatLonFromAddress(addressFrom);
+    const latLon = getLatLonFromAddress(addressFrom.address);
     const newAddress = { ...addressFrom, coords: latLon };
     setAddressFrom(newAddress);
   }
 
   function handleBlurTo(e) {
-    const latLon = getLatLonFromAddress(addressTo);
+    const latLon = getLatLonFromAddress(addressTo.address);
     const newAddress = { ...addressTo, coords: latLon };
     setAddressTo(newAddress);
   }
@@ -69,9 +70,20 @@ function Home() {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
 
+    let addressText
+    try {
+      const address = await getAddressFromLatLon(pos.coords.latitude, pos.coords.longitude)
+      addressText = `${address.road || ''} ${address.house_number || ''}, ${address.postcode || ''} ${address.county || ''}`
+    } catch {
+      addressText = ''
+    }
     const newAddress = {
       ...addressFrom,
-      address: getAddressFromLatLon(addressFrom.address),
+      address: addressText,
+      coords: {
+        lat: pos.coords.latitude,
+        lon: pos.coords.longitude,
+      }
     };
 
     setAddressFrom(newAddress);
@@ -98,6 +110,7 @@ function Home() {
   };
 
   useEffect(() => {
+    // setInterval(()=>{ getCoords() }, 5 * 1000)
     getCoords();
   }, []);
 
@@ -120,7 +133,20 @@ function Home() {
         />
       ) : (
         <main>
-          <div className={styles.map}></div>
+          <div className={styles.map}>
+            <MapContainer center={[addressFrom.coords.lon, addressFrom.coords.lat]} zoom={13} scrollWheelZoom={false}>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker position={[51.505, -0.09]}>
+                <Popup>
+                  A pretty CSS3 popup. <br /> Easily customizable.
+                </Popup>
+              </Marker>
+              <MapHooks mapCenter={addressFrom.coords} />
+            </MapContainer>
+          </div>
           <div className={styles.inputs}>
             {stepOne ? (
               <>
