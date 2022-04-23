@@ -1,0 +1,9 @@
+.map {
+    width: 100vw;
+    height: 60vh;
+    flex: 1;
+
+    > div {
+        height: 100%;
+    }
+}

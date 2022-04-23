@@ -6,6 +6,8 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Button } from "@mui/material";
 import { convertToTime } from "../helper";
+import { useState, useEffect, useContext } from "react";
+import { MapContext } from "../context/MapContext";
 
 function TripSummary({
   time,
@@ -15,13 +17,14 @@ function TripSummary({
   cancelTrip,
   openRatingModal,
 }) {
+  const {initial, from, setFrom, to, setTo, userLocation, setUserLocation} = useContext(MapContext);
   return (
     <div className={styles.tripSummary}>
       <h3>Your trip is finished.</h3>
       <p className={styles.fromTo}>
         <RoundaboutRightIcon />
-        {addressFrom} <ArrowForwardIcon className={styles.arrowIcon} />{" "}
-        {addressTo}
+        {from.address} <ArrowForwardIcon className={styles.arrowIcon} />{" "}
+        {to.address}
       </p>
       <p>
         <AccessTimeIcon /> {convertToTime(time)}

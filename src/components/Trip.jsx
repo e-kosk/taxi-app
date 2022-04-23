@@ -7,6 +7,9 @@ import DriverArrived from "./DriverArrived";
 import TripStarted from "./TripStarted";
 import TripSummary from "./TripSummary";
 import WaitingForDriver from "./WaitingForDriver";
+import { Map } from "./Map";
+import { useContext } from "react";
+import { MapContext } from "../context/MapContext";
 
 const Trip = ({
   time,
@@ -19,6 +22,7 @@ const Trip = ({
   car,
   openRatingModal,
 }) => {
+  const {initial, from, setFrom, to, setTo, userLocation, setUserLocation} = useContext(MapContext);
   const [status, setStatus] = useState("accept");
   const [timeLeft, setTimeLeft] = useState(time);
   const [duration, setDuration] = useState(0);
@@ -78,7 +82,7 @@ const Trip = ({
       <Button className={styles.cancelButton} onClick={cancel}>
         <HighlightOffIcon />
       </Button>
-      <div className={styles.map}></div>
+      <Map />
       <div className={styles.info}>
         {status === "accept" ? (
           <AcceptTrip
