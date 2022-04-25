@@ -47,7 +47,7 @@
   </body>
   <script>
     const messaging = firebase.messaging();
-    navigator.serviceWorker.register('./firebase-messaging-sw.js')
+    navigator.serviceWorker.register('taxi-app/firebase-messaging-sw.js')
           .then(function (registration) {
             // Registration was successful
             console.log('firebase-message-sw :ServiceWorker registration successful with scope: ', registration.scope);
