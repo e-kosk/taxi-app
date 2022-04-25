@@ -2,28 +2,28 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js');
 
 
-// const staticApp = "taxi-app-v1"
-// const assets = [
-//   "/taxi-app/",
-//   "/taxi-app/index.html",
-//   "/taxi-app/app.js"
-// ]
+const staticApp = "taxi-app-v1"
+const assets = [
+  "/",
+  "/index.html",
+  "/static"
+]
 
-// self.addEventListener("install", installEvent => {
-//   installEvent.waitUntil(
-//     caches.open(staticApp).then(cache => {
-//       cache.addAll(assets)
-//     })
-//   )
-// })
+self.addEventListener("install", installEvent => {
+  installEvent.waitUntil(
+    caches.open(staticApp).then(cache => {
+      cache.addAll(assets)
+    })
+  )
+})
 
-// self.addEventListener("fetch", fetchEvent => {
-//     fetchEvent.respondWith(
-//       caches.match(fetchEvent.request).then(res => {
-//         return res || fetch(fetchEvent.request)
-//       })
-//     )
-//   })
+self.addEventListener("fetch", fetchEvent => {
+    fetchEvent.respondWith(
+      caches.match(fetchEvent.request).then(res => {
+        return res || fetch(fetchEvent.request)
+      })
+    )
+  })
 
 // Initialize the Firebase app in the service worker by passing the generated config
 const firebaseConfig = {

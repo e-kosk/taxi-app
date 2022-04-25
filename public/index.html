@@ -46,6 +46,7 @@
     -->
   </body>
   <script>
+    
     const firebaseConfig = {
     apiKey: "AIzaSyBr-3BjYtybQV3UX8R-ODhIVBcIW4MwEM0",
     authDomain: "taxi-app-f4bb8.firebaseapp.com",
@@ -61,11 +62,11 @@ firebase.initializeApp(firebaseConfig);
     navigator.serviceWorker.register('./firebase-messaging-sw.js')
           .then(function (registration) {
             // Registration was successful
-            console.log('firebase-message-sw :ServiceWorker registration successful with scope: ', registration.scope);
+            console.log('firebase-message-sw :ServiceWorker2 registration successful with scope: ', registration.scope);
             messaging.useServiceWorker(registration);
           }, function (err) {
             // registration failed :(
-            console.log('firebase-message-sw: ServiceWorker registration failed: ', err);
+            console.log('firebase-message-sw: ServiceWorker2 registration failed: ', err);
           });
 
 

@@ -7,7 +7,7 @@ function parseAddress(data) {
 }
 
 export function getAddressFromLatLon(lat, lon) {
-    let url = `http://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=27&addressdetails=1&accept-language=PL_pl`;
+    let url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=27&addressdetails=1&accept-language=PL_pl`;
     return fetch(url).then(r=>r.json()).then(d=>{console.log(d); return parseAddress(d.address)});
 }
 
