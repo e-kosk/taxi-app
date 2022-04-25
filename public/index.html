@@ -46,6 +46,17 @@
     -->
   </body>
   <script>
+    const firebaseConfig = {
+    apiKey: "AIzaSyBr-3BjYtybQV3UX8R-ODhIVBcIW4MwEM0",
+    authDomain: "taxi-app-f4bb8.firebaseapp.com",
+    projectId: "taxi-app-f4bb8",
+    storageBucket: "taxi-app-f4bb8.appspot.com",
+    messagingSenderId: "615754435573",
+    appId: "1:615754435573:web:ef03eafc970d7df63e6ebc",
+    measurementId: "G-PW14W6MN4L"
+  };
+
+firebase.initializeApp(firebaseConfig);
     const messaging = firebase.messaging();
     navigator.serviceWorker.register('taxi-app/firebase-messaging-sw.js')
           .then(function (registration) {
