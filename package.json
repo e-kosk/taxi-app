@@ -2,7 +2,7 @@
   "name": "taxi-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://wegrzynmaciej.github.io/taxi-app",
+  "homepage": "https://taxi-app-f4bb8.web.app/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -23,6 +23,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "sass": "^1.50.0",
+    "uifx": "^2.0.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
