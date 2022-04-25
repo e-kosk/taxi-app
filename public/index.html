@@ -46,7 +46,7 @@
     -->
   </body>
   <script>
-    //const messaging = firebase.messaging();
+    const messaging = firebase.messaging();
     navigator.serviceWorker.register('./firebase-messaging-sw.js')
           .then(function (registration) {
             // Registration was successful
