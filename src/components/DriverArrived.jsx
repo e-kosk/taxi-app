@@ -19,7 +19,13 @@ const DriverArrived = ({ address, startTrip, name, car }) => {
       throttleMs: 100
     });
   alert.play();
-  navigator.vibrate(200,50,200);
+  // enable vibration support
+  navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+  if (navigator.vibrate) {
+    // vibration API supported
+      navigator.vibrate(1000);
+  }
   return (
     <div className={styles.driverArrived}>
       <h3>
