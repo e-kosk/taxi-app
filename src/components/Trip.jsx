@@ -10,6 +10,9 @@ import WaitingForDriver from "./WaitingForDriver";
 import { Map } from "./Map";
 import { useContext } from "react";
 import { MapContext } from "../context/MapContext";
+import { auth,db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Trip = ({
   time,
@@ -27,6 +30,7 @@ const Trip = ({
   const [timeLeft, setTimeLeft] = useState(time);
   const [duration, setDuration] = useState(0);
   const [durationInterval, setDurationInterval] = useState();
+  const [user, loading, error] = useAuthState(auth);
 
   const acceptTrip = () => {
     setStatus("waiting");
@@ -47,6 +51,16 @@ const Trip = ({
   const finishTrip = () => {
     clearInterval(durationInterval);
     setStatus("tripFinished");
+
+    // save to db
+    const data = {
+      "from": from,
+      "to": to,
+      "duration": duration,
+      "cost": cost,
+      "userId": user.uid,
+    };
+    addDoc(collection(db, "rides"), data);
   };
 
   const cancel = () => {

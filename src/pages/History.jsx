@@ -8,53 +8,23 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { convertToTime } from "../helper";
 import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
-
-const mockItems = [
-  {
-    from: "Długa 21",
-    to: "Krótka 12",
-    duration: 105,
-    cost: 9.21,
-    driver: {
-      name: "James",
-      jobTitle: "Taxi Driver",
-      img: "https://placebeard.it/100x100",
-    },
-  },
-  {
-    from: "Rynek 1",
-    to: "Mogilska 132",
-    duration: 302,
-    cost: 15.21,
-    driver: {
-      name: "Michael",
-      jobTitle: "Premium Taxi Driver",
-      img: "https://placebeard.it/100x100",
-    },
-  },
-  {
-    from: "Kalwaryjska 109",
-    to: "Lubicz 38",
-    duration: 253,
-    cost: 13.89,
-    driver: {
-      name: "Dave",
-      jobTitle: "Taxi Driver",
-      img: "https://placebeard.it/100x100",
-    },
-  },
-];
+import { auth,db } from "../firebase";
+import { collection, addDoc, query, where, setDoc, getDocs } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const History = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     //api call for history items
-    setTimeout(() => {
-      setItems([...mockItems, ...mockItems, ...mockItems, ...mockItems, ...mockItems, ...mockItems]);
-      setIsLoading(false);
-    }, 1000);
+    const q = query(collection(db, "rides"), where("userId", "==", user.uid));
+    getDocs(q).then(docs => {
+      const ridesData = docs.docs.map((d) => d.data()) 
+      setItems(ridesData);
+      setIsLoading(false)
+    });
   }, []);
 
   return (
@@ -71,7 +41,7 @@ const History = () => {
                   <DirectionsCarIcon className={styles.carIcon} />
                   <span>
                     <p className={styles.route}>
-                      {item.from} <ArrowForwardIcon /> {item.to}
+                      {item.from.address} <ArrowForwardIcon /> {item.to.address}
                     </p>
                     <div className={styles.stats}>
                       <p>
