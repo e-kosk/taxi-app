@@ -3,12 +3,24 @@ import { Button, Rating } from "@mui/material";
 import styles from "./Rate.module.scss";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const Rate = ({ name, jobTitle, close }) => {
   const [rate, setRate] = useState(5);
   const [comment, setComment] = useState(
     "Everything was ok, highly recommended."
   );
+
+  const sendRating = () => {
+    const data = {
+      "name": name,
+      "rating": parseInt(rate),
+      "comment": comment
+    };
+    addDoc(collection(db, "ratings"), data);
+    close();
+  };
 
   return (
     <div className={styles.rateModal}>
@@ -33,7 +45,7 @@ const Rate = ({ name, jobTitle, close }) => {
         }}
       />
       <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
-      <Button onClick={close}>
+      <Button onClick={sendRating}>
         Send <SendIcon />
       </Button>
     </div>

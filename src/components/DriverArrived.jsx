@@ -5,9 +5,27 @@ import styles from "./Trip.module.scss";
 import CarCrashIcon from "@mui/icons-material/CarCrash";
 import { useState, useEffect, useContext } from "react";
 import { MapContext } from "../context/MapContext";
+import UIFx from "uifx";
+import noti from '../sounds/noti.mp3';
+
+
 
 const DriverArrived = ({ address, startTrip, name, car }) => {
   const {initial, from, setFrom, to, setTo, userLocation, setUserLocation} = useContext(MapContext);
+  const alert = new UIFx(
+    noti, 
+    {
+      volume: 0.4, // number between 0.0 ~ 1.0
+      throttleMs: 100
+    });
+  alert.play();
+  // enable vibration support
+  navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+  if (navigator.vibrate) {
+    // vibration API supported
+      navigator.vibrate(1000);
+  }
   return (
     <div className={styles.driverArrived}>
       <h3>

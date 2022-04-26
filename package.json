@@ -2,7 +2,7 @@
   "name": "taxi-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://e-kosk.github.io/taxi-app",
+  "homepage": "https://taxi-app-f4bb8.web.app/",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -12,7 +12,6 @@
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^9.6.11",
-    "gh-pages": "^3.2.3",
     "leaflet": "^1.8.0",
     "leaflet-routing-machine": "^3.2.12",
     "react": "^18.0.0",
@@ -24,6 +23,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "sass": "^1.50.0",
+    "uifx": "^2.0.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -51,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
