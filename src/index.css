@@ -13,6 +13,6 @@ code {
     monospace;
 }
 
-/* .leaflet-routing-container.leaflet-bar.leaflet-routing-container-hide.leaflet-control {
+.leaflet-routing-container.leaflet-bar.leaflet-routing-container-hide.leaflet-control {
   display: none;
-} */
+}
