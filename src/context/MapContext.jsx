@@ -5,10 +5,14 @@ export const MapContext = createContext({
     from: {address: '', coords: {lat: 0, lon: 0}}, 
     to: {address: '', coords: {lat: 0, lon: 0}}, 
     userLocation: {lat: 0, lon:0},
+    cost: 0, 
+    distance: 0,
     setInital: () => {},
     setFrom: () => {},
     setFo: () => {},
     setUserLocation: () => {},
+    setCost: () => {},
+    setDistance: () => {},
 });
 
 export const MapProvider = ({children}) => {
@@ -16,6 +20,8 @@ export const MapProvider = ({children}) => {
     const [from, setFrom] = useState({address: '', coords: {lat: 0, lon: 0}})
     const [to, setTo] = useState({address: '', coords: {lat: 0, lon: 0}})
     const [userLocation, setUserLocation] = useState({lat: 0, lon:0})
+    const [cost, setCost] = useState(0)
+    const [distance, setDistance] = useState(0)
 
     return (
         <MapContext.Provider value={{
@@ -23,10 +29,14 @@ export const MapProvider = ({children}) => {
             from: from, 
             to: to, 
             userLocation: userLocation,
+            cost: cost, 
+            distance: distance,
             setInitial: setInitial,
             setFrom: setFrom,
             setTo: setTo,
-            setUserLocation: setUserLocation,
+            setUserLocation: setUserLocation, 
+            setCost: setCost, 
+            setDistance: setDistance,
         }}>
             {children}
         </MapContext.Provider>

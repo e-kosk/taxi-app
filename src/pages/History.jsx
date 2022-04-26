@@ -6,6 +6,7 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import RouteIcon from '@mui/icons-material/Route';
 import { convertToTime } from "../helper";
 import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
 import { auth,db } from "../firebase";
@@ -19,9 +20,11 @@ const History = () => {
 
   useEffect(() => {
     //api call for history items
+    while (loading) {}
     const q = query(collection(db, "rides"), where("userId", "==", user.uid));
     getDocs(q).then(docs => {
       const ridesData = docs.docs.map((d) => d.data()) 
+      console.log(ridesData)
       setItems(ridesData);
       setIsLoading(false)
     });
@@ -51,6 +54,10 @@ const History = () => {
                       <p>
                         <AttachMoneyIcon />
                         {item.cost}
+                      </p>
+                      <p>
+                        <RouteIcon /> 
+                        {item.distance} km
                       </p>
                     </div>
                   </span>

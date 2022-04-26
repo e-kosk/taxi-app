@@ -16,7 +16,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 const Trip = ({
   time,
-  cost,
   cancelTrip,
   name,
   jobTitle,
@@ -25,7 +24,7 @@ const Trip = ({
   car,
   openRatingModal,
 }) => {
-  const {initial, from, setFrom, to, setTo, userLocation, setUserLocation} = useContext(MapContext);
+  const {from, to, cost, distance} = useContext(MapContext);
   const [status, setStatus] = useState("accept");
   const [timeLeft, setTimeLeft] = useState(time);
   const [duration, setDuration] = useState(0);
@@ -57,9 +56,11 @@ const Trip = ({
       "from": from,
       "to": to,
       "duration": duration,
+      "distance": distance,
       "cost": cost,
       "userId": user.uid,
     };
+    console.log('saving trip', data)
     addDoc(collection(db, "rides"), data);
   };
 
@@ -101,6 +102,7 @@ const Trip = ({
         {status === "accept" ? (
           <AcceptTrip
             cost={cost}
+            distance={distance}
             jobTitle={jobTitle}
             name={name}
             time={time}
@@ -129,6 +131,7 @@ const Trip = ({
         ) : status === "tripFinished" ? (
           <TripSummary
             cost={cost}
+            distance={distance}
             time={duration}
             addressFrom={addressFrom}
             addressTo={addressTo}
