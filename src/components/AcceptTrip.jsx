@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Trip.module.scss";
 import DoneIcon from "@mui/icons-material/Done";
 
-const AcceptTrip = ({ time, jobTitle, cost, name, acceptTrip }) => {
+const AcceptTrip = ({ time, jobTitle, cost, distance, name, acceptTrip }) => {
   return (
     <div className={styles.acceptTrip}>
       <div className={styles.driver}>
@@ -18,6 +18,7 @@ const AcceptTrip = ({ time, jobTitle, cost, name, acceptTrip }) => {
       <div className={styles.tripInfo}>
         <p>{time} min</p>
         <p>${cost}</p>
+        <p>{distance} km</p>
       </div>
       <Button onClick={acceptTrip}>
         accept <DoneIcon />
