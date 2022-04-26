@@ -45,7 +45,12 @@ const CreateRoutineMachineLayer = (props) => {
         fitSelectedRoutes: true,
         showAlternatives: false
     });
-
+    instance.on('routesfound', function(e) {
+        var routes = e.routes;
+        var summary = routes[0].summary;
+        // alert distance and time in km and minutes
+        var cost =  (summary.totalDistance / 1000) * 1.80;
+    });
     return instance;
 };
 
