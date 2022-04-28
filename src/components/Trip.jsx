@@ -60,7 +60,7 @@ const Trip = ({
       "cost": cost,
       "userId": user.uid,
     };
-    console.log('saving trip', data)
+    // console.log('saving trip', data)
     addDoc(collection(db, "rides"), data);
   };
 
