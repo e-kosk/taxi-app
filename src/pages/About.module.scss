@@ -1,20 +1,21 @@
 @import "../global.scss";
 
 .dashboard {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .dashboard__container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .container {
     display: flex;
     flex-direction: column;
     text-align: center;
     background-color: #dcdcdc;
     padding: 30px;
   }
-  .dashboard__btn {
+
+  .btn {
     padding: 10px;
     font-size: 18px;
     margin-top: 10px;
@@ -22,6 +23,19 @@
     color: white;
     background-color: black;
   }
-  .dashboard div {
-    margin-top: 7px;
+
+  .cc {
+    border: 1px solid $lightGrey;
+    border-radius: 15px;
+    padding: 10px 20px;
   }
+}
+
+.dashboard div {
+  margin-top: 7px;
+}
+
+.hint {
+  font-size: 20px;
+  font-weight: 600;
+}
