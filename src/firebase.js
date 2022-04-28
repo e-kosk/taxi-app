@@ -103,19 +103,69 @@ async function logout() {
 
 const messaging = getMessaging();
 export const requestForToken = () => {
-  return getToken(messaging, { vapidKey: 'BI-RaIFQdEd2iiRPm3JZ6R4XM9-HL0vdw2BPop0gucsAn12eztjW5dXdl0nx3qH41uoDmWQwGN5gnV-FNua-kp0' })
-    .then((currentToken) => {
-      if (currentToken) {
-        console.log('current token for client: ', currentToken);
-        // Perform any other neccessary action with the token
-      } else {
-        // Show permission request UI
-        console.log('No registration token available. Request permission to generate one.');
-      }
-    })
-    .catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-    });
+  var sw = navigator.serviceWorker.ready;
+  sw.then(
+    function (reg) {
+        var serviceWorker;
+        if (reg.installing) {
+            serviceWorker = reg.installing;
+            // console.log('Service worker installing');
+        } else if (reg.waiting) {
+            serviceWorker = reg.waiting;
+            // console.log('Service worker installed & waiting');
+        } else if (reg.active) {
+            serviceWorker = reg.active;
+            // console.log('Service worker active');
+        }
+
+        if (serviceWorker) {
+            console.log("sw current state", serviceWorker.state);
+            if (serviceWorker.state == "activated") {
+                //If push subscription wasnt done yet have to do here
+                return getToken(messaging, { vapidKey: 'BI-RaIFQdEd2iiRPm3JZ6R4XM9-HL0vdw2BPop0gucsAn12eztjW5dXdl0nx3qH41uoDmWQwGN5gnV-FNua-kp0' })
+                .then((currentToken) => {
+                  if (currentToken) {
+                    console.log('current token for client: ', currentToken);
+                    // Perform any other neccessary action with the token
+                  } else {
+                    // Show permission request UI
+                    console.log('No registration token available. Request permission to generate one.');
+                  }
+                })
+                .catch((err) => {
+                  console.log('An error occurred while retrieving token. ', err);
+                });
+            }
+            serviceWorker.addEventListener("statechange", function(e) {
+                console.log("sw statechange : ", e.target.state);
+                if (e.target.state == "activated") {
+                    // use pushManger for subscribing here.
+                    console.log("Just now activated. now we can subscribe for push notification")
+                    return getToken(messaging, { vapidKey: 'BI-RaIFQdEd2iiRPm3JZ6R4XM9-HL0vdw2BPop0gucsAn12eztjW5dXdl0nx3qH41uoDmWQwGN5gnV-FNua-kp0' })
+                    .then((currentToken) => {
+                      if (currentToken) {
+                        console.log('current token for client: ', currentToken);
+                        // Perform any other neccessary action with the token
+                      } else {
+                        // Show permission request UI
+                        console.log('No registration token available. Request permission to generate one.');
+                      }
+                    })
+                    .catch((err) => {
+                      console.log('An error occurred while retrieving token. ', err);
+                    });
+                    //subscribeForPushNotification(reg);
+                }
+            });
+        }
+    },
+    function (err) {
+        console.error(err);
+    }
+);
+  
+
+
 };
 
 export const onMessageListener = () =>
