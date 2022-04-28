@@ -7,6 +7,8 @@ import { query, collection, getDoc, doc, where } from "firebase/firestore";
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
+  const [ccNumber, setccNumber] = useState("");
+  const [ccExpiry, setccExpiry] = useState("");
   const navigate = useNavigate();
   const fetchUserName = async () => {
     try {
@@ -17,6 +19,8 @@ function Dashboard() {
       const data = docs.data();
 
       setName(data.name);
+      setccNumber(data.ccNumber);
+      setccExpiry(data.ccExpiry);
     } catch (err) {
       console.error(err);
 
@@ -34,6 +38,12 @@ function Dashboard() {
         Logged in as
          <div>{name}</div>
          <div>{user?.email}</div>
+         
+         <div>{ccNumber}</div>
+         <div>{ccExpiry}</div>
+         <button className="dashboard__btn" /*onClick={logout}*/>
+          Add payment
+         </button>
          <button className="dashboard__btn" onClick={logout}>
           Logout
          </button>
